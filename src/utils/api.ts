@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://192.168.1.7:3001'
+  baseURL: 'https://waiterapp-api-d3kn.onrender.com'
 });
