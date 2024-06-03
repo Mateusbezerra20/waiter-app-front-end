@@ -61,7 +61,7 @@ function AuthProvider({ children }: { children: React.ReactNode}) {
 }
 
 
-export default {
+export {
   AuthContext,
   AuthProvider
 };
