@@ -99,6 +99,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
   body {
+    height: 100vh;
 
     background: #fafafa;
 

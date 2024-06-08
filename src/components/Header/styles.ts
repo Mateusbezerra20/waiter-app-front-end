@@ -1,33 +1,41 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-  background: #D73035;
+  /* background: #D73035; */
+  width: 100%;
+  max-width: 1216px;
+  margin: 40px auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 198px;
-`;
+  justify-content: space-between;
+  height: 72px;
 
-
-export const Content = styled.div`
-    width: 100%;
-    max-width: 1216px;
+  .page-details {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
 
-    .page-details {
-        h1 {
-            color: #fff;
-            font-size: 32px;
-        }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
-        h2 {
-            color: #fff;
-            font-weight: 400;
-            font-size: 16px;
-            opacity: 0.9;
-            margin-top: 6px;
-        }
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 120%;
+        color: #333;
+      }
     }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 150%;
+    }
+  }
 `;

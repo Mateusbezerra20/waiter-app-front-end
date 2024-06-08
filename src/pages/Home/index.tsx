@@ -2,10 +2,14 @@ import { Header } from '../../components/Header';
 import { Orders } from '../../components/Orders';
 
 
-export function Dashboard() {
+export function Home() {
   return (
     <>
-      <Header />
+      <Header
+        title="Home"
+        description="Acompanhe os pedidos dos clientes"
+        pageIcon='home'
+      />
       <Orders />
     </>
   );

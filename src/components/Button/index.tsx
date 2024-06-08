@@ -7,7 +7,7 @@ interface ButtonProps extends ComponentProps<'button'> {
 
 export function Button({ label, disabled }: ButtonProps) {
   return (
-    <Container disabled={disabled}>
+    <Container disabled={disabled} className='primary '>
       <span>{ label }</span>
     </Container>
   );

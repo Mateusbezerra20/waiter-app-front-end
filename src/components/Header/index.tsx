@@ -1,18 +1,29 @@
-import { Container, Content } from './styles';
+import { Container } from './styles';
+import { pagesIcons } from '../icons/pageIconsMaps';
 
-import logo from '../../assets/images/logo.svg';
+interface HeaderProps {
+  title: string;
+  description: string;
+  pageIcon: string;
+}
 
-export function Header() {
+export function Header({ title, description, pageIcon }: HeaderProps) {
+  const Icon = pagesIcons[pageIcon as keyof (typeof pagesIcons ) ?? 'home'];
   return (
     <Container>
-      <Content>
-        <div className="page-details">
-          <h1>Pedidos</h1>
-          <h2>Acompanhe os pedidos dos clientes</h2>
+      <div className="page-details">
+        <div className="title">
+          <Icon />
+          <h1>{ title }</h1>
         </div>
+        <h2>{ description }</h2>
+      </div>
 
-        <img src={logo} alt="WAITERAPP" />
-      </Content>
+
+
+
+
+
     </Container>
   );
 }
