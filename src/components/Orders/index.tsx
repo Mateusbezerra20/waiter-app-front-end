@@ -1,13 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import socketIo from 'socket.io-client';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+
 
 import { Container } from './styles';
 import { OrdersBoard } from '../OrdersBoard';
 import { Order } from '../types/Order';
 import { api } from '../../utils/api';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const { signout } = useContext(AuthContext);
 
   useEffect(() => {
     const socket = socketIo('https://waiterapp-api-d3kn.onrender.com', {
@@ -22,6 +27,12 @@ export function Orders() {
   useEffect(() => {
     api.get('/orders').then((response) => {
       setOrders(response.data);
+    }).catch((err) => {
+      if (err instanceof AxiosError ) {
+        signout();
+      } else {
+        toast.error('Ocorreu um arro ao buscar os dados.');
+      }
     });
   }, []);
 

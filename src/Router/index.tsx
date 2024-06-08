@@ -6,9 +6,6 @@ import { DashboardLayout } from '../pages/DashboardLayout';
 import { PreviousOrders } from '../pages/PreviousOrders';
 
 export function Router() {
-
-  console.log (PreviousOrders);
-
   return (
     <BrowserRouter>
       <Routes>
