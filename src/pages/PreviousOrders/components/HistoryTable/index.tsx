@@ -1,0 +1,52 @@
+import { Caption, Container, TableBody, TableHead } from '../../../../components/tableStyles';
+import { pagesIcons } from '../../../../components/icons/pageIconsMaps';
+
+export function HistoryTable() {
+  const Icon1 = pagesIcons.eye;
+  const Icon2 = pagesIcons.trash;
+
+  return (
+    <Container>
+      <Caption>
+        <strong>Pedidos</strong>
+        <div>3</div>
+      </Caption>
+      <TableHead>
+        <tr>
+          <th scope="col">Mesa</th>
+          <th scope="col">Data</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Total</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </TableHead>
+      <TableBody>
+        <tr>
+          <td>123</td>
+          <td>09/06/2024</td>
+          <td>Frango com Catupiry</td>
+          <td>🍕 Pizza</td>
+          <td>R$40</td>
+          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+        </tr>
+        <tr>
+          <td>123</td>
+          <td>09/06/2024</td>
+          <td>Frango com Catupiry</td>
+          <td>🍕 Pizza</td>
+          <td>R$40</td>
+          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+        </tr>
+        <tr>
+          <td>123</td>
+          <td>09/06/2024</td>
+          <td>Frango com Catupiry</td>
+          <td>🍕 Pizza</td>
+          <td>R$40</td>
+          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+        </tr>
+      </TableBody>
+    </Container>
+  );
+}

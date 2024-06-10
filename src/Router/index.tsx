@@ -4,6 +4,9 @@ import { AuthGuard } from './AuthGuard';
 import { Login } from '../pages/Login';
 import { DashboardLayout } from '../pages/DashboardLayout';
 import { PreviousOrders } from '../pages/PreviousOrders';
+import { Menu } from '../pages/Menu';
+import { Users } from '../pages/Users';
+import { Profile } from '../pages/Profile';
 
 export function Router() {
   return (
@@ -17,8 +20,9 @@ export function Router() {
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/orders" element={<PreviousOrders />} />
-            <Route path="/menu" element={<h1>Cardápio</h1>} />
-            <Route path="/users" element={<h1>Usuários</h1>} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>
       </Routes>
