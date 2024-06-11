@@ -51,6 +51,7 @@ export const TableHead = styled.thead`
 
     th:last-child {
       border-top-right-radius: 8px;
+      width: 128px;
     }
 
     th {
@@ -66,7 +67,7 @@ export const TableBody = styled.tbody`
   tr {
     td:last-child {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
 
       button {
         background: none;

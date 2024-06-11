@@ -1,19 +1,19 @@
-import { Caption, Container, TableBody, TableHead } from '../../../../components/tableStyles';
-import { pagesIcons } from '../../../../components/icons/pageIconsMaps';
+import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
+import { pagesIcons } from '../../../components/icons/pageIconsMaps';
 
-export function CategoriesTable() {
+export function ProductsTable() {
   const Icon1 = pagesIcons.eye;
   const Icon2 = pagesIcons.trash;
 
   return (
     <Container>
       <Caption>
-        <strong>Categorias</strong>
+        <strong>Products</strong>
         <div>3</div>
       </Caption>
       <TableHead>
         <tr>
-          <th scope="col">Emoji</th>
+          <th scope="col" style={{ width: 40 }}>Emoji</th>
           <th scope="col">Nome</th>
           <th scope="col">Ações</th>
         </tr>

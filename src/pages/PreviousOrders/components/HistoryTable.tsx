@@ -1,5 +1,5 @@
-import { Caption, Container, TableBody, TableHead } from '../../../../components/tableStyles';
-import { pagesIcons } from '../../../../components/icons/pageIconsMaps';
+import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
+import { pagesIcons } from '../../../components/icons/pageIconsMaps';
 
 export function HistoryTable() {
   const Icon1 = pagesIcons.eye;
@@ -13,8 +13,8 @@ export function HistoryTable() {
       </Caption>
       <TableHead>
         <tr>
-          <th scope="col">Mesa</th>
-          <th scope="col">Data</th>
+          <th scope="col" style={{ width: 80 }}>Mesa</th>
+          <th scope="col" style={{ width: 128 }}>Data</th>
           <th scope="col">Nome</th>
           <th scope="col">Categoria</th>
           <th scope="col">Total</th>
