@@ -13,25 +13,33 @@ export function ProductsTable() {
       </Caption>
       <TableHead>
         <tr>
-          <th scope="col" style={{ width: 40 }}>Emoji</th>
+          <th scope="col">Imagem</th>
           <th scope="col">Nome</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Preço</th>
           <th scope="col">Ações</th>
         </tr>
       </TableHead>
       <TableBody>
         <tr>
           <td>🍕</td>
-          <td>Pizzas</td>
+          <td>Quatro Queijos</td>
+          <td>🍕 Pizza</td>
+          <td>R$ 40</td>
           <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
         </tr>
         <tr>
-          <td>🍔</td>
-          <td>Lanches</td>
+          <td>🍕</td>
+          <td>Quatro Queijos</td>
+          <td>🍕 Pizza</td>
+          <td>R$ 40</td>
           <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
         </tr>
         <tr>
-          <td>🍺</td>
-          <td>Bebidas</td>
+          <td>🍕</td>
+          <td>Quatro Queijos</td>
+          <td>🍕 Pizza</td>
+          <td>R$ 40</td>
           <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
         </tr>
       </TableBody>
