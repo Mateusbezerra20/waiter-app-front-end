@@ -1,15 +1,20 @@
 import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
 import { pagesIcons } from '../../../components/icons/pageIconsMaps';
+import { Category } from '../../../entities/Category';
 
-export function CategoriesTable() {
-  const Icon1 = pagesIcons.eye;
+interface CategoriesTableProps {
+  data: Category[];
+}
+
+export function CategoriesTable({ data }: CategoriesTableProps) {
+  const Icon1 = pagesIcons.pencil;
   const Icon2 = pagesIcons.trash;
 
   return (
     <Container>
       <Caption>
         <strong>Categorias</strong>
-        <div>3</div>
+        <div>{data.length}</div>
       </Caption>
       <TableHead>
         <tr>
@@ -19,21 +24,15 @@ export function CategoriesTable() {
         </tr>
       </TableHead>
       <TableBody>
-        <tr>
-          <td>🍕</td>
-          <td>Pizzas</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
-        </tr>
-        <tr>
-          <td>🍔</td>
-          <td>Lanches</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
-        </tr>
-        <tr>
-          <td>🍺</td>
-          <td>Bebidas</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
-        </tr>
+        {
+          data.map((category) => (
+            <tr key={category._id}>
+              <td>{category.icon}</td>
+              <td>{category.name}</td>
+              <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+            </tr>
+          ))
+        }
       </TableBody>
     </Container>
   );
