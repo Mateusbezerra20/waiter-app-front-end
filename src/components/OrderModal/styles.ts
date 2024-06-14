@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StatusContainer = styled.div`
+  width: 416px;
+
   small {
     font-size: 14px;
     opacity: 0.8;
