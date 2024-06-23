@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.button<{ variant: string }>`
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  align-items: center;
   width: 100%;
   background: #D73035;
   border: 0;
@@ -11,6 +15,7 @@ export const Container = styled.button<{ variant: string }>`
   ${({ variant }) => variant === 'secondary' ? css`
     color: #D73035;
     background: transparent;
+    width: fit-content;
     padding: 12px 0px;
   ` : ''}
 
