@@ -1,9 +1,9 @@
 import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
 import { pagesIcons } from '../../../components/icons/pageIconsMaps';
-import { Category } from '../../../entities/Category';
+import { ICategory } from '../../../entities/Category';
 
 interface CategoriesTableProps {
-  data: Category[];
+  data: ICategory[];
 }
 
 export function CategoriesTable({ data }: CategoriesTableProps) {

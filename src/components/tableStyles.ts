@@ -13,6 +13,7 @@ export const Container = styled.table`
 export const Caption = styled.caption`
   caption-side: top;
   text-align: left;
+  position: relative;
   margin-bottom: 16px;
 
   strong {
@@ -32,6 +33,13 @@ export const Caption = styled.caption`
     font-size: 16px;
     font-weight: 500;
     line-height: 120%;
+  }
+
+  button {
+    width: fit-content !important;
+    position: absolute;
+    right: 0px;
+    top: calc(0px - 50%);
   }
 `;
 
