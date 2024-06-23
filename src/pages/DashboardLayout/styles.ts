@@ -4,15 +4,18 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+`;
 
-  main {
-    width: 100%;
-    justify-self: stretch;
-  }
+export const Content = styled.main`
+  width: 100%;
+  justify-self: stretch;
+  padding-left: 108px;
 `;
 
 export const Menu = styled.div`
+  position: fixed;
   width: 108px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

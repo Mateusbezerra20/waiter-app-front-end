@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { Container, ExitButton, Logo, Menu, Navigation } from './styles';
+import { Container, Content, ExitButton, Logo, Menu, Navigation } from './styles';
 import { NavItem } from './Components/NavItem';
 import { pagesIcons } from '../../components/icons/pageIconsMaps';
 
@@ -27,9 +27,9 @@ export function DashboardLayout() {
         </Navigation>
       </Menu>
 
-      <main>
+      <Content>
         <Outlet />
-      </main>
+      </Content>
     </Container>
   );
 }
