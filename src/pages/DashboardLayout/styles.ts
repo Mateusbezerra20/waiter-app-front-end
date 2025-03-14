@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -55,7 +55,7 @@ export const ExitButton = styled.button`
   border: none;
 
   :hover {
-    color: #D73035;
+    color: #d73035;
   }
 
   svg {

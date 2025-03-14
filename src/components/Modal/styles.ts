@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Overlay = styled.div`
   left: 0px;
@@ -13,7 +13,6 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 
 export const ModalBody = styled.div`
   background: #fff;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div<{ hasError: boolean }>`
   display: flex;
@@ -13,7 +13,7 @@ export const Container = styled.div<{ hasError: boolean }>`
 
   input {
     border: solid 1px;
-    border-color: ${({ hasError }) => hasError ? '#D73035' : '#CCC' };
+    border-color: ${({ hasError }) => (hasError ? "#D73035" : "#CCC")};
     border-radius: 8px;
     padding: 16px 14px;
     font-size: 14px;
@@ -35,7 +35,7 @@ export const Container = styled.div<{ hasError: boolean }>`
       font-size: 14px;
       font-weight: 500;
       line-height: 200%;
-      color: #D73035;
+      color: #d73035;
     }
   }
 `;

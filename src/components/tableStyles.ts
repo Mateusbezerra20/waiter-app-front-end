@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.table`
   width: 100%;
@@ -90,7 +90,7 @@ export const TableBody = styled.tbody`
       }
 
       button:last-child {
-        color: #D73035;
+        color: #d73035;
       }
     }
 

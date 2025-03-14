@@ -1,19 +1,27 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
-import { Container, Content, ExitButton, Logo, Menu, Navigation } from './styles';
-import { NavItem } from './Components/NavItem';
-import { pagesIcons } from '../../components/icons/pageIconsMaps';
+import {
+  Container,
+  Content,
+  ExitButton,
+  Logo,
+  Menu,
+  Navigation,
+} from "./styles";
+import { NavItem } from "./Components/NavItem";
+import { pagesIcons } from "../../components/icons/pageIconsMaps";
 
 export function DashboardLayout() {
-
   const ExitIcon = pagesIcons.logoff;
 
   return (
     <Container>
       <Menu>
-        <Logo><strong>W</strong>A</Logo>
+        <Logo>
+          <strong>W</strong>A
+        </Logo>
         <Navigation>
-          <NavItem icon="home" name="Home" to="/"/>
+          <NavItem icon="home" name="Home" to="/" />
           <NavItem icon="order" name="Histórico" to="/orders" />
           <NavItem icon="menu" name="Cardápio" to="/menu" />
           <NavItem icon="users" name="Usuários" to="/users" />

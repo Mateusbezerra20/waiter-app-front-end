@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div<{active: boolean}>`
+export const Container = styled.div<{ active: boolean }>`
   width: 108px;
   height: 108px;
   display: flex;
@@ -11,9 +11,11 @@ export const Container = styled.div<{active: boolean}>`
   color: #666666;
   cursor: pointer;
 
-  ${({ active }) => active && (`
+  ${({ active }) =>
+    active &&
+    `
     color: #D73035;
-  `)}
+  `}
 
   svg {
     width: 24px;
@@ -33,6 +35,6 @@ export const Container = styled.div<{active: boolean}>`
     border-radius: 4px;
     transition: width 100ms;
 
-    ${({ active }) => !active && 'width: 0px;'}
+    ${({ active }) => !active && "width: 0px;"}
   }
 `;

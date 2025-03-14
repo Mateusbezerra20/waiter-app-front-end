@@ -1,5 +1,5 @@
-import { Header } from '../../components/Header';
-import { UsersTable } from './Components/UsersTable';
+import { Header } from "../../components/Header";
+import { UsersTable } from "./Components/UsersTable";
 
 export function Users() {
   return (

@@ -1,5 +1,5 @@
-import { Header } from '../../components/Header';
-import { HistoryTable } from './components/HistoryTable';
+import { Header } from "../../components/Header";
+import { HistoryTable } from "./components/HistoryTable";
 
 export function PreviousOrders() {
   return (

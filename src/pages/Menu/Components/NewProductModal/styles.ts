@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Content = styled.main`
   display: flex;
@@ -19,7 +19,6 @@ export const Content = styled.main`
   }
 
   .image-input-container {
-
     h5 {
       margin-bottom: 16px;
     }
@@ -41,7 +40,7 @@ export const Content = styled.main`
         gap: 4px;
         height: 52px;
         background-color: #fff;
-        color: #D73035;
+        color: #d73035;
         cursor: pointer;
 
         span {

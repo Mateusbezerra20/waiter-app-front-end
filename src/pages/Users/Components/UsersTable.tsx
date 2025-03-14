@@ -1,5 +1,10 @@
-import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
-import { pagesIcons } from '../../../components/icons/pageIconsMaps';
+import {
+  Caption,
+  Container,
+  TableBody,
+  TableHead,
+} from "../../../components/tableStyles";
+import { pagesIcons } from "../../../components/icons/pageIconsMaps";
 
 export function UsersTable() {
   const Icon1 = pagesIcons.eye;
@@ -24,19 +29,40 @@ export function UsersTable() {
           <td>Fulano de Tal</td>
           <td>fulano@mail.com</td>
           <td>Garçom</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
         <tr>
           <td>Fulano de Tal</td>
           <td>fulano@mail.com</td>
           <td>Garçom</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
         <tr>
           <td>Fulano de Tal</td>
           <td>fulano@mail.com</td>
           <td>Garçom</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
       </TableBody>
     </Container>

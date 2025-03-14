@@ -1,4 +1,4 @@
-export interface User{
-  id: string,
-  role: 'WAITER' | 'ADMIN'
+export interface User {
+  id: string;
+  role: "WAITER" | "ADMIN";
 }

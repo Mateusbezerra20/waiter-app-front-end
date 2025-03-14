@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from '../pages/Home';
-import { AuthGuard } from './AuthGuard';
-import { Login } from '../pages/Login';
-import { DashboardLayout } from '../pages/DashboardLayout';
-import { PreviousOrders } from '../pages/PreviousOrders';
-import { Menu } from '../pages/Menu';
-import { Users } from '../pages/Users';
-import { Profile } from '../pages/Profile';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "../pages/Home";
+import { AuthGuard } from "./AuthGuard";
+import { Login } from "../pages/Login";
+import { DashboardLayout } from "../pages/DashboardLayout";
+import { PreviousOrders } from "../pages/PreviousOrders";
+import { Menu } from "../pages/Menu";
+import { Users } from "../pages/Users";
+import { Profile } from "../pages/Profile";
 
 export function Router() {
   return (

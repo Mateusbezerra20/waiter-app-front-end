@@ -1,5 +1,10 @@
-import { Caption, Container, TableBody, TableHead } from '../../../components/tableStyles';
-import { pagesIcons } from '../../../components/icons/pageIconsMaps';
+import {
+  Caption,
+  Container,
+  TableBody,
+  TableHead,
+} from "../../../components/tableStyles";
+import { pagesIcons } from "../../../components/icons/pageIconsMaps";
 
 export function HistoryTable() {
   const Icon1 = pagesIcons.eye;
@@ -13,8 +18,12 @@ export function HistoryTable() {
       </Caption>
       <TableHead>
         <tr>
-          <th scope="col" style={{ width: 80 }}>Mesa</th>
-          <th scope="col" style={{ width: 128 }}>Data</th>
+          <th scope="col" style={{ width: 80 }}>
+            Mesa
+          </th>
+          <th scope="col" style={{ width: 128 }}>
+            Data
+          </th>
           <th scope="col">Nome</th>
           <th scope="col">Categoria</th>
           <th scope="col">Total</th>
@@ -28,7 +37,14 @@ export function HistoryTable() {
           <td>Frango com Catupiry</td>
           <td>🍕 Pizza</td>
           <td>R$40</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
         <tr>
           <td>123</td>
@@ -36,7 +52,14 @@ export function HistoryTable() {
           <td>Frango com Catupiry</td>
           <td>🍕 Pizza</td>
           <td>R$40</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
         <tr>
           <td>123</td>
@@ -44,7 +67,14 @@ export function HistoryTable() {
           <td>Frango com Catupiry</td>
           <td>🍕 Pizza</td>
           <td>R$40</td>
-          <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
+          <td>
+            <button type="button">
+              <Icon1 />
+            </button>
+            <button type="button">
+              <Icon2 />
+            </button>
+          </td>
         </tr>
       </TableBody>
     </Container>

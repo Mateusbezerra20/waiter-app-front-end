@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   margin: 0px auto 32px;
@@ -14,10 +14,12 @@ export const SectionButton = styled.button<{ active: boolean }>`
   font-weight: 400;
   line-height: 150%;
 
-  ${({ active }) => active && css`
-    background-color: #fff;
-    color: #D73035;
-    font-size: 14px;
-    font-weight: 600;
-  `}
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #fff;
+      color: #d73035;
+      font-size: 14px;
+      font-weight: 600;
+    `}
 `;

@@ -1,21 +1,21 @@
-import { ChangeEvent, useState } from 'react';
-import { z } from 'zod';
+import { ChangeEvent, useState } from "react";
+import { z } from "zod";
 
-import { Content, Footer } from './styles';
-import { useErrors } from '../../../../hooks/useErrors';
+import { Content, Footer } from "./styles";
+import { useErrors } from "../../../../hooks/useErrors";
 
-import { Input } from '../../../../components/Input';
-import { Modal } from '../../../../components/Modal';
-import { Button } from '../../../../components/Button';
+import { Input } from "../../../../components/Input";
+import { Modal } from "../../../../components/Modal";
+import { Button } from "../../../../components/Button";
 
-import { ImageIcon } from '../../../../components/icons/ImageIcon';
-import { CheckIcon } from '../../../../components/icons/CheckIcon';
+import { ImageIcon } from "../../../../components/icons/ImageIcon";
+import { CheckIcon } from "../../../../components/icons/CheckIcon";
 
-import { IPostProduct } from '../../../../entities/PostProduct';
+import { IPostProduct } from "../../../../entities/PostProduct";
 
-import noImage from '../../../../assets/images/no-image.png';
-import { ingredientes } from '../../../../assets/ingredients';
-import { toast } from 'react-toastify';
+import noImage from "../../../../assets/images/no-image.png";
+import { ingredientes } from "../../../../assets/ingredients";
+import { toast } from "react-toastify";
 
 interface NewProductModalProps {
   handleClose: () => void;
@@ -27,64 +27,65 @@ interface IIngredient {
   name: string;
 }
 
-const nameSchema = z.string().min(1, { message: 'Informe o nome do produto'});
+const nameSchema = z.string().min(1, { message: "Informe o nome do produto" });
 const descriptionSchema = z
   .string()
-  .min(1, { message: 'Adicione uma descrição ao produto' });
+  .min(1, { message: "Adicione uma descrição ao produto" });
 
 const priceSchema = z.coerce.number();
 
 const categorias = [
   {
-    _id: '6653974e188ad6ddf3f51947',
-    name: 'Pizzas',
-    icon: '🍕'
+    _id: "6653974e188ad6ddf3f51947",
+    name: "Pizzas",
+    icon: "🍕",
   },
   {
-    _id: '66539777188ad6ddf3f51949',
-    name: 'Hambúrgueres',
-    icon: '🍔'
+    _id: "66539777188ad6ddf3f51949",
+    name: "Hambúrgueres",
+    icon: "🍔",
   },
   {
-    _id: '665397a5188ad6ddf3f5194b',
-    name: 'Bebidas',
-    icon: '🍺'
+    _id: "665397a5188ad6ddf3f5194b",
+    name: "Bebidas",
+    icon: "🍺",
   },
   {
-    _id: '6653987b188ad6ddf3f5194d',
-    name: 'Milk Shakes',
-    icon: '🥤'
+    _id: "6653987b188ad6ddf3f5194d",
+    name: "Milk Shakes",
+    icon: "🥤",
   },
   {
-    _id: '66539a5f188ad6ddf3f51950',
-    name: 'Promoção',
-    icon: '🏷️'
-  }
+    _id: "66539a5f188ad6ddf3f51950",
+    name: "Promoção",
+    icon: "🏷️",
+  },
 ];
 
-export function NewProductModal({ handleClose, handleSubmit }: NewProductModalProps) {
-
-  const [selectedIngredients, setSelectedIngredients] = useState<IIngredient[]>([]);
+export function NewProductModal({
+  handleClose,
+  handleSubmit,
+}: NewProductModalProps) {
+  const [selectedIngredients, setSelectedIngredients] = useState<IIngredient[]>(
+    [],
+  );
   const [selectedCategory, setSelectedCategory] = useState<string>();
   const [imageFile, setImageFile] = useState<File>();
-  const [productName, setProductName] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [productPrice, setProductPrice] = useState('');
+  const [productName, setProductName] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productPrice, setProductPrice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { errors,
-    addError,
-    removeError,
-    getErrorMessageByFieldName
-  } = useErrors();
+  const { errors, addError, removeError, getErrorMessageByFieldName } =
+    useErrors();
 
   const isButtonEnabled = !!(
-    selectedCategory
-    && imageFile
-    && productName
-    && productDescription
-    && productPrice
-    && errors.length < 1
+    selectedCategory &&
+    imageFile &&
+    productName &&
+    productDescription &&
+    productPrice &&
+    errors.length < 1
   );
 
   async function handleSubmitData() {
@@ -100,7 +101,7 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
         price: productPrice,
       });
     } catch {
-      toast.error('Falha ao cadastrar o novo produto');
+      toast.error("Falha ao cadastrar o novo produto");
     } finally {
       setIsLoading(false);
       handleClose();
@@ -115,7 +116,9 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
         return newValue;
       }
 
-      const newValue = prevState.filter((item) => item.name !== ingredient.name);
+      const newValue = prevState.filter(
+        (item) => item.name !== ingredient.name,
+      );
       return newValue;
     });
   }
@@ -133,9 +136,9 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
 
     if (!parsedValue.success) {
       const message = parsedValue.error.errors[0].message;
-      addError({ field: 'name', message });
+      addError({ field: "name", message });
     } else {
-      removeError('name');
+      removeError("name");
     }
   }
 
@@ -146,9 +149,9 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
 
     if (!parsedValue.success) {
       const message = parsedValue.error.errors[0].message;
-      addError({ field: 'description', message });
+      addError({ field: "description", message });
     } else {
-      removeError('description');
+      removeError("description");
     }
   }
 
@@ -160,9 +163,9 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
 
     if (!parsedValue.success) {
       const message = parsedValue.error.errors[0].message;
-      addError({ field: 'price', message });
+      addError({ field: "price", message });
     } else {
-      removeError('price');
+      removeError("price");
     }
   }
 
@@ -170,13 +173,15 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
     <Modal title="Novo Produto" handleClose={handleClose}>
       <Content>
         <section className="product-info">
-
           <div className="image-input-container">
             <h5>Imagem</h5>
             <div>
-              <img src={ imageFile ? URL.createObjectURL(imageFile) : noImage } alt="imagem do produto" />
+              <img
+                src={imageFile ? URL.createObjectURL(imageFile) : noImage}
+                alt="imagem do produto"
+              />
 
-              <label htmlFor="image" >
+              <label htmlFor="image">
                 <ImageIcon />
                 <span>Alterar Imagem</span>
               </label>
@@ -192,15 +197,15 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
 
           <Input
             name="name"
-            label='Nome do produto'
+            label="Nome do produto"
             onChange={handleChangeName}
-            errorMessage={getErrorMessageByFieldName('name')}
+            errorMessage={getErrorMessageByFieldName("name")}
           />
           <Input
             name="description"
-            label='Descrição'
+            label="Descrição"
             onChange={handleChangeDescription}
-            errorMessage={getErrorMessageByFieldName('description')}
+            errorMessage={getErrorMessageByFieldName("description")}
           />
 
           <div id="category-price-group">
@@ -211,24 +216,22 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
               min={0}
               value={productPrice}
               onChange={handleChangePrice}
-              errorMessage={getErrorMessageByFieldName('price')}
+              errorMessage={getErrorMessageByFieldName("price")}
             />
 
             <div id="categories-selection">
-              <label htmlFor="category-select" >Categoria</label>
+              <label htmlFor="category-select">Categoria</label>
               <select
                 name="categories"
                 id="category-select"
                 onChange={(event) => setSelectedCategory(event.target.value)}
               >
                 <option value="">Selecione a categoria</option>
-                {
-                  categorias.map((category) => (
-                    <option key={category._id} value={category._id}>
-                      {`${category.icon} ${category.name}`}
-                    </option>
-                  ))
-                }
+                {categorias.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {`${category.icon} ${category.name}`}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -240,31 +243,33 @@ export function NewProductModal({ handleClose, handleSubmit }: NewProductModalPr
             <Button label="Novo Ingrediente" variant="secondary" />
           </header>
 
-          <div id="search-ingredients-container" >
+          <div id="search-ingredients-container">
             <Input
               name="search"
               label="Busque o ingrediente"
               placeholder="Ex: Mussarela"
             />
             <div id="ingredients-list">
-              {
-                ingredientes.map((ingredient) => (
-                  <div key={ingredient.name}>
-                    <span>{`${ingredient.icon} ${ingredient.name}`}</span>
-                    <button onClick={() => handleToggleIngredientOption(ingredient)}>
-                      <CheckIcon selected={selectedIngredients.includes(ingredient)} />
-                    </button>
-                  </div>
-                ))
-              }
+              {ingredientes.map((ingredient) => (
+                <div key={ingredient.name}>
+                  <span>{`${ingredient.icon} ${ingredient.name}`}</span>
+                  <button
+                    onClick={() => handleToggleIngredientOption(ingredient)}
+                  >
+                    <CheckIcon
+                      selected={selectedIngredients.includes(ingredient)}
+                    />
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </Content>
       <Footer>
         <Button
-          label={ isLoading ? 'Salvando' : 'Salvar' }
-          isLoading={ isLoading }
+          label={isLoading ? "Salvando" : "Salvar"}
+          isLoading={isLoading}
           disabled={!isButtonEnabled}
           onClick={handleSubmitData}
         />

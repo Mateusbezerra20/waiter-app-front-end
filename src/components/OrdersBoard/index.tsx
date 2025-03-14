@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import { toast } from "react-toastify";
 
-import { api } from '../../utils/api';
-import { OrderModal } from '../OrderModal';
-import { Order } from '../types/Order';
-import { Board, OrdersContainer } from './styles';
+import { api } from "../../utils/api";
+import { OrderModal } from "../OrderModal";
+import { Order } from "../types/Order";
+import { Board, OrdersContainer } from "./styles";
 
 interface OrdersBoardProps {
   title: string;
   icon: string;
   orders: Array<Order>;
   onCancelOrder: (orderId: string) => void;
-  onChangeOrderStatus: (orderId: string, status: Order['status']) => void;
+  onChangeOrderStatus: (orderId: string, status: Order["status"]) => void;
 }
 
 // Paramos em 1:30
 
-export function OrdersBoard(props: OrdersBoardProps){
-  const { title, icon, orders, onCancelOrder, onChangeOrderStatus} = props;
+export function OrdersBoard(props: OrdersBoardProps) {
+  const { title, icon, orders, onCancelOrder, onChangeOrderStatus } = props;
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
@@ -36,11 +36,14 @@ export function OrdersBoard(props: OrdersBoardProps){
   async function handleChangeStatusOrder() {
     setIsLoading(true);
 
-    const newStatus = selectedOrder?.status === 'WAITING' ? 'IN_PRODUCTION' : 'DONE';
+    const newStatus =
+      selectedOrder?.status === "WAITING" ? "IN_PRODUCTION" : "DONE";
 
     await api.patch(`/orders/${selectedOrder?._id}`, { status: newStatus });
 
-    toast.success(`Status do pedido da mesa ${selectedOrder?.table} foi alterado!`);
+    toast.success(
+      `Status do pedido da mesa ${selectedOrder?.table} foi alterado!`,
+    );
     onChangeOrderStatus(selectedOrder!._id, newStatus);
     setIsLoading(false);
     setIsModalVisible(false);
@@ -75,16 +78,18 @@ export function OrdersBoard(props: OrdersBoardProps){
 
       {orders.length > 0 && (
         <OrdersContainer>
-          {
-            orders.map(order => {
-              return (
-                <button type='button' key={order._id} onClick={() => handleOpenModal(order)}>
-                  <strong>Mesa {order.table}</strong>
-                  <span>{order.products.length} itens</span>
-                </button>
-              );
-            })
-          }
+          {orders.map((order) => {
+            return (
+              <button
+                type="button"
+                key={order._id}
+                onClick={() => handleOpenModal(order)}
+              >
+                <strong>Mesa {order.table}</strong>
+                <span>{order.products.length} itens</span>
+              </button>
+            );
+          })}
         </OrdersContainer>
       )}
     </Board>

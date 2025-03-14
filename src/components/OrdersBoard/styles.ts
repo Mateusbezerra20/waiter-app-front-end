@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Board = styled.div`
   padding: 16px;
@@ -52,5 +52,5 @@ export const OrdersContainer = styled.div`
     & + button {
       margin-top: 24px;
     }
-    }
+  }
 `;

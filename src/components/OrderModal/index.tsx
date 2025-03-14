@@ -1,9 +1,9 @@
-import { Actions, OrderDetails, StatusContainer } from './styles';
-import { Order } from '../types/Order';
+import { Actions, OrderDetails, StatusContainer } from "./styles";
+import { Order } from "../types/Order";
 
-import formatCurrency from '../../utils/formatCurrency';
-import { useEffect } from 'react';
-import { Modal } from '../Modal';
+import formatCurrency from "../../utils/formatCurrency";
+import { useEffect } from "react";
+import { Modal } from "../Modal";
 
 interface OrderModalProps {
   visible: boolean;
@@ -15,30 +15,39 @@ interface OrderModalProps {
 }
 
 export function OrderModal(props: OrderModalProps) {
-  const {visible, order, onClose, onCancelOrder, onChangeOrderStatus, isLoading} = props;
+  const {
+    visible,
+    order,
+    onClose,
+    onCancelOrder,
+    onChangeOrderStatus,
+    isLoading,
+  } = props;
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if(event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-
   }, [onClose]);
 
-  if(!visible || !order) {
+  if (!visible || !order) {
     return null;
   }
 
-  const total = order.products.reduce((previousValue, {quantity, product}) => {
-    return previousValue + (quantity * product.price);
-  }, 0);
+  const total = order.products.reduce(
+    (previousValue, { quantity, product }) => {
+      return previousValue + quantity * product.price;
+    },
+    0,
+  );
 
   return (
     <Modal title={`Mesa ${order.table}`} handleClose={onClose}>
@@ -46,14 +55,14 @@ export function OrderModal(props: OrderModalProps) {
         <small>Status do pedido</small>
         <div>
           <span>
-            {order.status === 'WAITING' && '🕑'}
-            {order.status === 'IN_PRODUCTION' && '🧑🏽‍🍳'}
-            {order.status === 'DONE' && '✅'}
+            {order.status === "WAITING" && "🕑"}
+            {order.status === "IN_PRODUCTION" && "🧑🏽‍🍳"}
+            {order.status === "DONE" && "✅"}
           </span>
           <strong>
-            {order.status === 'WAITING' && 'Fila de espera'}
-            {order.status === 'IN_PRODUCTION' && 'Em preparação'}
-            {order.status === 'DONE' && 'Pronto'}
+            {order.status === "WAITING" && "Fila de espera"}
+            {order.status === "IN_PRODUCTION" && "Em preparação"}
+            {order.status === "DONE" && "Pronto"}
           </strong>
         </div>
       </StatusContainer>
@@ -62,7 +71,7 @@ export function OrderModal(props: OrderModalProps) {
         <strong>Itens</strong>
 
         <div className="order-items">
-          {order.products.map(({_id, quantity, product}) => (
+          {order.products.map(({ _id, quantity, product }) => (
             <div className="item" key={_id}>
               <img
                 src={`${import.meta.env.VITE_API_URL}/uploads/${product.imagePath}`}
@@ -88,7 +97,7 @@ export function OrderModal(props: OrderModalProps) {
       </OrderDetails>
 
       <Actions>
-        {order.status !== 'DONE' ? (
+        {order.status !== "DONE" ? (
           <button
             type="button"
             className="primary"
@@ -96,15 +105,15 @@ export function OrderModal(props: OrderModalProps) {
             onClick={onChangeOrderStatus}
           >
             <span>
-              {order.status === 'WAITING' && '🧑🏽‍🍳'}
-              {order.status === 'IN_PRODUCTION' && '✅'}
+              {order.status === "WAITING" && "🧑🏽‍🍳"}
+              {order.status === "IN_PRODUCTION" && "✅"}
             </span>
             <strong>
-              {order.status === 'WAITING' && 'Iniciar Preparo'}
-              {order.status === 'IN_PRODUCTION' && 'Concluir Pedido'}
+              {order.status === "WAITING" && "Iniciar Preparo"}
+              {order.status === "IN_PRODUCTION" && "Concluir Pedido"}
             </strong>
           </button>
-        ) : null }
+        ) : null}
 
         <button
           type="button"

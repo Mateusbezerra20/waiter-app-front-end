@@ -1,9 +1,14 @@
-import { Caption, Container, TableBody, TableHead } from '../../../../components/tableStyles';
-import { pagesIcons } from '../../../../components/icons/pageIconsMaps';
-import { IProduct } from '../../../../entities/Product';
-import formatCurrency from '../../../../utils/formatCurrency';
-import { ProductImage } from './styles';
-import { Button } from '../../../../components/Button';
+import {
+  Caption,
+  Container,
+  TableBody,
+  TableHead,
+} from "../../../../components/tableStyles";
+import { pagesIcons } from "../../../../components/icons/pageIconsMaps";
+import { IProduct } from "../../../../entities/Product";
+import formatCurrency from "../../../../utils/formatCurrency";
+import { ProductImage } from "./styles";
+import { Button } from "../../../../components/Button";
 
 interface ProductsTableProps {
   data: IProduct[];
@@ -20,7 +25,11 @@ export function ProductsTable({ data, onNewProduct }: ProductsTableProps) {
         <strong>Products</strong>
         <div>{data.length}</div>
 
-        <Button label="Novo Produto" variant="secondary" onClick={onNewProduct}/>
+        <Button
+          label="Novo Produto"
+          variant="secondary"
+          onClick={onNewProduct}
+        />
       </Caption>
       <TableHead>
         <tr>
@@ -32,19 +41,27 @@ export function ProductsTable({ data, onNewProduct }: ProductsTableProps) {
         </tr>
       </TableHead>
       <TableBody>
-        {
-          data.map((product) => (
-            <tr key={product._id}>
-              <td>
-                <ProductImage src={`${import.meta.env.VITE_API_URL}/uploads/${product.imagePath}`} alt="produto" />
-              </td>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{formatCurrency(product.price)}</td>
-              <td><button type="button"><Icon1 /></button><button type="button"><Icon2 /></button></td>
-            </tr>
-          ))
-        }
+        {data.map((product) => (
+          <tr key={product._id}>
+            <td>
+              <ProductImage
+                src={`${import.meta.env.VITE_API_URL}/uploads/${product.imagePath}`}
+                alt="produto"
+              />
+            </td>
+            <td>{product.name}</td>
+            <td>{product.category}</td>
+            <td>{formatCurrency(product.price)}</td>
+            <td>
+              <button type="button">
+                <Icon1 />
+              </button>
+              <button type="button">
+                <Icon2 />
+              </button>
+            </td>
+          </tr>
+        ))}
       </TableBody>
     </Container>
   );
