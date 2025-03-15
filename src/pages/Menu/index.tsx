@@ -32,7 +32,7 @@ export function Menu() {
     });
 
     return prod;
-  }, [products]);
+  }, [products, categories]);
 
   useEffect(() => {
     api.get("/products").then((response) => {
