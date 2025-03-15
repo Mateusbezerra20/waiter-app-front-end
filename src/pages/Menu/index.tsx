@@ -79,6 +79,7 @@ export function Menu() {
       />
       {isModalOpen && (
         <NewProductModal
+          categories={categories}
           handleSubmit={handleSaveNewProdut}
           handleClose={() => setIsModalOpen(false)}
         />

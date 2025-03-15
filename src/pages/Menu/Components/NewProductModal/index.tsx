@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { z } from "zod";
+import { toast } from "react-toastify";
 
 import { Content, Footer } from "./styles";
 import { useErrors } from "../../../../hooks/useErrors";
@@ -15,9 +16,10 @@ import { IPostProduct } from "../../../../entities/PostProduct";
 
 import noImage from "../../../../assets/images/no-image.png";
 import { ingredientes } from "../../../../assets/ingredients";
-import { toast } from "react-toastify";
+import { ICategory } from "../../../../entities/Category";
 
 interface NewProductModalProps {
+  categories: ICategory[];
   handleClose: () => void;
   handleSubmit: (props: IPostProduct) => Promise<void>;
 }
@@ -34,35 +36,8 @@ const descriptionSchema = z
 
 const priceSchema = z.coerce.number();
 
-const categorias = [
-  {
-    _id: "6653974e188ad6ddf3f51947",
-    name: "Pizzas",
-    icon: "🍕",
-  },
-  {
-    _id: "66539777188ad6ddf3f51949",
-    name: "Hambúrgueres",
-    icon: "🍔",
-  },
-  {
-    _id: "665397a5188ad6ddf3f5194b",
-    name: "Bebidas",
-    icon: "🍺",
-  },
-  {
-    _id: "6653987b188ad6ddf3f5194d",
-    name: "Milk Shakes",
-    icon: "🥤",
-  },
-  {
-    _id: "66539a5f188ad6ddf3f51950",
-    name: "Promoção",
-    icon: "🏷️",
-  },
-];
-
 export function NewProductModal({
+  categories,
   handleClose,
   handleSubmit,
 }: NewProductModalProps) {
@@ -227,7 +202,7 @@ export function NewProductModal({
                 onChange={(event) => setSelectedCategory(event.target.value)}
               >
                 <option value="">Selecione a categoria</option>
-                {categorias.map((category) => (
+                {categories.map((category) => (
                   <option key={category._id} value={category._id}>
                     {`${category.icon} ${category.name}`}
                   </option>
