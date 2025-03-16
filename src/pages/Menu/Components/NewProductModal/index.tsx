@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { z } from "zod";
 import { toast } from "react-toastify";
 
@@ -49,10 +49,19 @@ export function NewProductModal({
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const { errors, addError, removeError, getErrorMessageByFieldName } =
     useErrors();
+
+  const filteredIngredients = useMemo(
+    () =>
+      ingredientes.filter((ingrediente) =>
+        ingrediente.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    [searchTerm],
+  );
 
   const isButtonEnabled = !!(
     selectedCategory &&
@@ -144,6 +153,11 @@ export function NewProductModal({
     }
   }
 
+  function handleChangeSearchTerm(event: ChangeEvent<HTMLInputElement>) {
+    const fieldValue = event.target.value;
+    setSearchTerm(fieldValue);
+  }
+
   return (
     <Modal title="Novo Produto" handleClose={handleClose}>
       <Content>
@@ -223,9 +237,10 @@ export function NewProductModal({
               name="search"
               label="Busque o ingrediente"
               placeholder="Ex: Mussarela"
+              onChange={handleChangeSearchTerm}
             />
             <div id="ingredients-list">
-              {ingredientes.map((ingredient) => (
+              {filteredIngredients.map((ingredient) => (
                 <div key={ingredient.name}>
                   <span>{`${ingredient.icon} ${ingredient.name}`}</span>
                   <button
