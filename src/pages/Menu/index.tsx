@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Header } from "../../components/Header";
 import { CategoriesTable } from "./Components/CategoriesTable";
@@ -44,6 +44,10 @@ export function Menu() {
     api.get("/categories").then((response) => {
       setCategories(response.data);
     });
+  }, []);
+
+  const reloadProducts = useCallback(() => {
+    api.get("/products").then((response) => setProducts(response.data));
   }, []);
 
   function changeActiveSection(section: string) {
@@ -92,6 +96,7 @@ export function Menu() {
         <ProductsTable
           data={tableReadyProducts}
           onNewProduct={() => setIsModalOpen(true)}
+          reloadProducts={reloadProducts}
         />
       ) : (
         <CategoriesTable data={categories} />
