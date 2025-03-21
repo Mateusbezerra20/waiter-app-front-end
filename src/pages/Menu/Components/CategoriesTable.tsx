@@ -1,6 +1,7 @@
 import {
   Caption,
   Container,
+  Quantity,
   TableBody,
   TableHead,
 } from "../../../components/tableStyles";
@@ -19,7 +20,7 @@ export function CategoriesTable({ data }: CategoriesTableProps) {
     <Container>
       <Caption>
         <strong>Categorias</strong>
-        <div>{data.length}</div>
+        <Quantity>{data.length}</Quantity>
       </Caption>
       <TableHead>
         <tr>

@@ -24,23 +24,23 @@ export const Caption = styled.caption`
     margin-right: 8px;
   }
 
-  div {
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: #ccc;
-    border-radius: 4px;
-
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 120%;
-  }
-
   button {
     width: fit-content !important;
     position: absolute;
     right: 0px;
     top: calc(0px - 50%);
   }
+`;
+
+export const Quantity = styled.span`
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #ccc;
+  border-radius: 4px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
 `;
 
 export const TableHead = styled.thead`

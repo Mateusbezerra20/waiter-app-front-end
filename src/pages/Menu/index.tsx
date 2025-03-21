@@ -19,6 +19,7 @@ export function Menu() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const tableReadyProducts = useMemo(() => {
     const prod = products.map((product) => {
@@ -36,6 +37,8 @@ export function Menu() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
+
       try {
         const [productsResponse, categoriesResponse] = await Promise.all([
           api.get("/products"),
@@ -46,6 +49,8 @@ export function Menu() {
         setCategories(categoriesResponse.data);
       } catch {
         toast.error("Ocorreu um erro ao carregar os produtos e categorias.");
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -53,7 +58,9 @@ export function Menu() {
   }, []);
 
   const reloadProducts = useCallback(() => {
+    setIsLoading(true);
     api.get("/products").then((response) => setProducts(response.data));
+    setIsLoading(false);
   }, []);
 
   function changeActiveSection(section: string) {
@@ -76,6 +83,8 @@ export function Menu() {
     });
 
     const savedProduct = resp.data;
+
+    reloadProducts();
 
     toast.success(`Produto ${savedProduct.name} foi cadastrado!`);
   }
@@ -103,6 +112,7 @@ export function Menu() {
           data={tableReadyProducts}
           onNewProduct={() => setIsModalOpen(true)}
           reloadProducts={reloadProducts}
+          isLoading={isLoading}
         />
       ) : (
         <CategoriesTable data={categories} />

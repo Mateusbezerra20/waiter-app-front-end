@@ -1,6 +1,7 @@
 import {
   Caption,
   Container,
+  Quantity,
   TableBody,
   TableHead,
 } from "../../../../components/tableStyles";
@@ -11,17 +12,20 @@ import { ProductImage } from "./styles";
 import { Button } from "../../../../components/Button";
 import { useState } from "react";
 import { DeleteProductModal } from "../DeleteProductModal";
+import { Loader } from "../../../../components/Loader";
 
 interface ProductsTableProps {
   data: IProduct[];
   reloadProducts: () => void;
   onNewProduct: () => void;
+  isLoading: boolean;
 }
 
 export function ProductsTable({
   data,
   onNewProduct,
   reloadProducts,
+  isLoading,
 }: ProductsTableProps) {
   const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
     useState(false);
@@ -53,7 +57,7 @@ export function ProductsTable({
       <Container>
         <Caption>
           <strong>Products</strong>
-          <div>{data.length}</div>
+          <Quantity>{isLoading ? <Loader size={2} /> : data.length}</Quantity>
 
           <Button
             label="Novo Produto"
