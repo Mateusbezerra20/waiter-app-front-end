@@ -35,15 +35,21 @@ export function Menu() {
   }, [products, categories]);
 
   useEffect(() => {
-    api.get("/products").then((response) => {
-      setProducts(response.data);
-    });
-  }, []);
+    async function fetchData() {
+      try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          api.get("/products"),
+          api.get("/categories"),
+        ]);
 
-  useEffect(() => {
-    api.get("/categories").then((response) => {
-      setCategories(response.data);
-    });
+        setProducts(productsResponse.data);
+        setCategories(categoriesResponse.data);
+      } catch {
+        toast.error("Ocorreu um erro ao carregar os produtos e categorias.");
+      }
+    }
+
+    fetchData();
   }, []);
 
   const reloadProducts = useCallback(() => {
