@@ -1,6 +1,7 @@
 import {
   Caption,
   Container,
+  Quantity,
   TableBody,
   TableHead,
 } from "../../../components/tableStyles";
@@ -14,7 +15,7 @@ export function HistoryTable() {
     <Container>
       <Caption>
         <strong>Pedidos</strong>
-        <div>3</div>
+        <Quantity>3</Quantity>
       </Caption>
       <TableHead>
         <tr>
