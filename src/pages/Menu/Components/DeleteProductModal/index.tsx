@@ -50,7 +50,11 @@ export function DeleteProductModal({
           </ProductDetails>
         </ProductInfo>
         <Actions>
-          <Button label="Manter Produto" variant="secondary" />
+          <Button
+            label="Manter Produto"
+            variant="secondary"
+            onClick={handleClose}
+          />
           <Button
             label={isLoading ? "Excluindo" : "Excluir Produto"}
             onClick={handleSubmit}
