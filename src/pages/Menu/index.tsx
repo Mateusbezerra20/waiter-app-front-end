@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Header } from "../../components/Header";
 import { CategoriesTable } from "./Components/CategoriesTable";
@@ -20,20 +20,6 @@ export function Menu() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const tableReadyProducts = useMemo(() => {
-    const prod = products.map((product) => {
-      const productsCategory = categories.find(
-        (category) => category._id === product.category,
-      );
-      return {
-        ...product,
-        category: `${productsCategory?.icon} ${productsCategory?.name}`,
-      };
-    });
-
-    return prod;
-  }, [products, categories]);
 
   useEffect(() => {
     async function fetchData() {
@@ -109,7 +95,8 @@ export function Menu() {
       />
       {activeSection === "products" ? (
         <ProductsTable
-          data={tableReadyProducts}
+          data={products}
+          categories={categories}
           onNewProduct={() => setIsModalOpen(true)}
           reloadProducts={reloadProducts}
           isLoading={isLoading}

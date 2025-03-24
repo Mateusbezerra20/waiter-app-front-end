@@ -13,11 +13,14 @@ import { Button } from "../../../../components/Button";
 import { useState } from "react";
 import { DeleteProductModal } from "../DeleteProductModal";
 import { Loader } from "../../../../components/Loader";
+import { EditProductModal } from "../EditProductModal";
+import { ICategory } from "../../../../entities/Category";
 
 interface ProductsTableProps {
   data: IProduct[];
   reloadProducts: () => void;
   onNewProduct: () => void;
+  categories: ICategory[];
   isLoading: boolean;
 }
 
@@ -26,9 +29,11 @@ export function ProductsTable({
   onNewProduct,
   reloadProducts,
   isLoading,
+  categories,
 }: ProductsTableProps) {
   const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
     useState(false);
+  const [isEditProductModalOpen, setIsEditProductModalOpen] = useState(false);
   const [productBeingDeleted, setProductBeingDeleted] =
     useState<IProduct | null>();
 
@@ -45,12 +50,30 @@ export function ProductsTable({
     setIsDeleteProductModalOpen(false);
   }
 
+  function openEditProductModal(product: IProduct) {
+    setProductBeingDeleted(product);
+    setIsEditProductModalOpen(true);
+  }
+
+  function closeEditProductModal() {
+    setProductBeingDeleted(null);
+    setIsEditProductModalOpen(false);
+  }
+
   return (
     <>
       {isDeleteProductModalOpen && (
         <DeleteProductModal
           product={productBeingDeleted}
           handleClose={closeDeleteProductModal}
+          reloadProducts={reloadProducts}
+        />
+      )}
+      {isEditProductModalOpen && productBeingDeleted && (
+        <EditProductModal
+          categories={categories}
+          product={productBeingDeleted}
+          handleClose={closeEditProductModal}
           reloadProducts={reloadProducts}
         />
       )}
@@ -84,10 +107,21 @@ export function ProductsTable({
                 />
               </td>
               <td>{product.name}</td>
-              <td>{product.category}</td>
+              <td>
+                {categories.find(
+                  (category) => category._id === product.category,
+                )?.icon +
+                  " " +
+                  categories.find(
+                    (category) => category._id === product.category,
+                  )?.name}
+              </td>
               <td>{formatCurrency(product.price)}</td>
               <td>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => openEditProductModal(product)}
+                >
                   <EditIcon />
                 </button>
                 <button

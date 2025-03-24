@@ -12,16 +12,16 @@ import { Button } from "../../../../components/Button";
 import { ImageIcon } from "../../../../components/icons/ImageIcon";
 import { CheckIcon } from "../../../../components/icons/CheckIcon";
 
-import { IPostProduct } from "../../../../entities/PostProduct";
-
-import noImage from "../../../../assets/images/no-image.png";
 import { ingredientes } from "../../../../assets/ingredients";
 import { ICategory } from "../../../../entities/Category";
+import { IProduct } from "../../../../entities/Product";
+import { api } from "../../../../utils/api";
 
-interface NewProductModalProps {
+interface EditProductModalProps {
   categories: ICategory[];
+  product: IProduct;
   handleClose: () => void;
-  handleSubmit: (props: IPostProduct) => Promise<void>;
+  reloadProducts: () => void;
 }
 
 interface IIngredient {
@@ -36,19 +36,24 @@ const descriptionSchema = z
 
 const priceSchema = z.coerce.number();
 
-export function NewProductModal({
+export function EditProductModal({
   categories,
+  product,
   handleClose,
-  handleSubmit,
-}: NewProductModalProps) {
+  reloadProducts,
+}: EditProductModalProps) {
   const [selectedIngredients, setSelectedIngredients] = useState<IIngredient[]>(
-    [],
+    product.ingredients,
   );
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
+    () => categories.find((category) => category._id === product.category)?._id,
+  );
   const [imageFile, setImageFile] = useState<File>();
-  const [productName, setProductName] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productPrice, setProductPrice] = useState("");
+  const [productName, setProductName] = useState(product.name);
+  const [productDescription, setProductDescription] = useState(
+    product.description,
+  );
+  const [productPrice, setProductPrice] = useState(String(product.price));
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,7 +70,7 @@ export function NewProductModal({
 
   const isButtonEnabled = !!(
     selectedCategory &&
-    imageFile &&
+    (imageFile || product.imagePath) &&
     productName &&
     productDescription &&
     productPrice &&
@@ -76,16 +81,24 @@ export function NewProductModal({
     setIsLoading(true);
 
     try {
-      await handleSubmit({
-        name: productName,
-        description: productDescription,
-        category: selectedCategory,
-        ingredients: selectedIngredients,
-        image: imageFile!,
-        price: productPrice,
+      const formData = new FormData();
+      formData.append("name", productName);
+      formData.append("description", productDescription);
+      formData.append("price", productPrice);
+      formData.append("ingredients", JSON.stringify(selectedIngredients));
+      selectedCategory && formData.append("category", selectedCategory);
+      imageFile && formData.append("image", imageFile);
+
+      await api.put(`/products/${product._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
+
+      reloadProducts();
+      toast.success(`Editado com sucesso!`);
     } catch {
-      toast.error("Falha ao cadastrar o novo produto");
+      toast.error("Falha ao editar o produto");
     } finally {
       setIsLoading(false);
       handleClose();
@@ -166,7 +179,11 @@ export function NewProductModal({
             <h5>Imagem</h5>
             <div>
               <img
-                src={imageFile ? URL.createObjectURL(imageFile) : noImage}
+                src={
+                  imageFile
+                    ? URL.createObjectURL(imageFile)
+                    : `${import.meta.env.VITE_API_URL}/uploads/${product.imagePath}`
+                }
                 alt="imagem do produto"
               />
 
@@ -187,12 +204,14 @@ export function NewProductModal({
           <Input
             name="name"
             label="Nome do produto"
+            value={productName}
             onChange={handleChangeName}
             errorMessage={getErrorMessageByFieldName("name")}
           />
           <Input
             name="description"
             label="Descrição"
+            value={productDescription}
             onChange={handleChangeDescription}
             errorMessage={getErrorMessageByFieldName("description")}
           />
@@ -215,9 +234,12 @@ export function NewProductModal({
                 id="category-select"
                 onChange={(event) => setSelectedCategory(event.target.value)}
               >
-                <option value="">Selecione a categoria</option>
                 {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
+                  <option
+                    key={category._id}
+                    value={category._id}
+                    selected={category._id === product.category}
+                  >
                     {`${category.icon} ${category.name}`}
                   </option>
                 ))}
@@ -247,7 +269,11 @@ export function NewProductModal({
                     onClick={() => handleToggleIngredientOption(ingredient)}
                   >
                     <CheckIcon
-                      selected={selectedIngredients.includes(ingredient)}
+                      selected={
+                        !!selectedIngredients.find(
+                          (item) => item.name === ingredient.name,
+                        )
+                      }
                     />
                   </button>
                 </div>
