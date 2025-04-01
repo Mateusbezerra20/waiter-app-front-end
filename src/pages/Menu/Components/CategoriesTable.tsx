@@ -13,9 +13,13 @@ import { NewCategoryModal } from "./NewCategoryModal";
 
 interface CategoriesTableProps {
   data: ICategory[];
+  reloadCategories: () => void;
 }
 
-export function CategoriesTable({ data }: CategoriesTableProps) {
+export function CategoriesTable({
+  data,
+  reloadCategories,
+}: CategoriesTableProps) {
   const [isNewCategoryModalOpen, setIsNewCategoryModalOpen] = useState(false);
   const Icon1 = pagesIcons.pencil;
   const Icon2 = pagesIcons.trash;
@@ -31,7 +35,10 @@ export function CategoriesTable({ data }: CategoriesTableProps) {
   return (
     <>
       {isNewCategoryModalOpen && (
-        <NewCategoryModal handleClose={closeNewCategoryModal} />
+        <NewCategoryModal
+          onRegistry={reloadCategories}
+          handleClose={closeNewCategoryModal}
+        />
       )}
       <Container>
         <Caption>

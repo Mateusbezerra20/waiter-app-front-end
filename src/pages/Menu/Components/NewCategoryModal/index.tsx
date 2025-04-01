@@ -11,16 +11,17 @@ import { toast } from "react-toastify";
 
 interface NewCategoryModalProps {
   handleClose: () => void;
+  onRegistry: () => void;
 }
 
 const nameSchema = z
   .string()
   .min(1, { message: "Informe o nome da categoria." });
-// const emojiSchema = z
-//   .string()
-//   .min(1, { message: "Adicione um emoji que represente a categoria." });
 
-export function NewCategoryModal({ handleClose }: NewCategoryModalProps) {
+export function NewCategoryModal({
+  handleClose,
+  onRegistry,
+}: NewCategoryModalProps) {
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState("🥪");
   const [isLoading, setIsloading] = useState(false);
@@ -41,6 +42,7 @@ export function NewCategoryModal({ handleClose }: NewCategoryModalProps) {
       setIsloading(false);
       handleClose();
       toast.success("Categoria criada.");
+      onRegistry();
     } catch {
       toast.error("Ocorreu um erro ao criar categoria.");
     }

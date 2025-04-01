@@ -49,6 +49,12 @@ export function Menu() {
     setIsLoading(false);
   }, []);
 
+  const reloadCategories = useCallback(() => {
+    setIsLoading(true);
+    api.get("/categories").then((response) => setCategories(response.data));
+    setIsLoading(false);
+  }, []);
+
   function changeActiveSection(section: string) {
     setActiveSection(section as "products" | "categories");
   }
@@ -102,7 +108,10 @@ export function Menu() {
           isLoading={isLoading}
         />
       ) : (
-        <CategoriesTable data={categories} />
+        <CategoriesTable
+          reloadCategories={reloadCategories}
+          data={categories}
+        />
       )}
     </>
   );
