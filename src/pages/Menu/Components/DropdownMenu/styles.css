@@ -1,0 +1,28 @@
+button {
+  all: unset;
+}
+
+.content {
+  z-index: 99;
+  padding: 8px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2px;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  font-size: 18px;
+}
+
+.item:hover {
+  transform: scale(1.2);
+}
