@@ -10,6 +10,8 @@ import { ICategory } from "../../../entities/Category";
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 import { NewCategoryModal } from "./NewCategoryModal";
+import { DeleteCategoryModal } from "./DeleteCategoryModal";
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 
 interface CategoriesTableProps {
   data: ICategory[];
@@ -21,8 +23,13 @@ export function CategoriesTable({
   reloadCategories,
 }: CategoriesTableProps) {
   const [isNewCategoryModalOpen, setIsNewCategoryModalOpen] = useState(false);
-  const Icon1 = pagesIcons.pencil;
-  const Icon2 = pagesIcons.trash;
+  const [isDeleteCategoryModalOpen, setIsDeleteCategoryModalOpen] =
+    useState(false);
+  const [categoryBeingDeleted, setCategoryBeingDeleted] =
+    useState<ICategory | null>(null);
+
+  const PencilIcon = pagesIcons.pencil;
+  const TrashIcon = pagesIcons.trash;
 
   function openNewCategoryModal() {
     setIsNewCategoryModalOpen(true);
@@ -30,6 +37,16 @@ export function CategoriesTable({
 
   function closeNewCategoryModal() {
     setIsNewCategoryModalOpen(false);
+  }
+
+  function openDeleteCategoryModal(category: ICategory) {
+    setCategoryBeingDeleted(category);
+    setIsDeleteCategoryModalOpen(true);
+  }
+
+  function closeDeleteCategoryModal() {
+    setIsDeleteCategoryModalOpen(false);
+    setCategoryBeingDeleted(null);
   }
 
   return (
@@ -40,6 +57,15 @@ export function CategoriesTable({
           handleClose={closeNewCategoryModal}
         />
       )}
+      {isDeleteCategoryModalOpen &&
+        categoryBeingDeleted &&
+        !isNewCategoryModalOpen && (
+          <DeleteCategoryModal
+            onClose={closeDeleteCategoryModal}
+            category={categoryBeingDeleted}
+            reloadCategories={reloadCategories}
+          />
+        )}
       <Container>
         <Caption>
           <strong>Categorias</strong>
@@ -64,13 +90,16 @@ export function CategoriesTable({
           {data.map((category) => (
             <tr key={category._id}>
               <td>{category.icon}</td>
-              <td>{category.name}</td>
+              <td>{capitalizeFirstLetter(category.name)}</td>
               <td>
                 <button type="button">
-                  <Icon1 />
+                  <PencilIcon />
                 </button>
-                <button type="button">
-                  <Icon2 />
+                <button
+                  type="button"
+                  onClick={() => openDeleteCategoryModal(category)}
+                >
+                  <TrashIcon />
                 </button>
               </td>
             </tr>
