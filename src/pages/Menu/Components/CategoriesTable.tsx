@@ -12,6 +12,7 @@ import { Button } from "../../../components/Button";
 import { NewCategoryModal } from "./NewCategoryModal";
 import { DeleteCategoryModal } from "./DeleteCategoryModal";
 import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
+import { EditCategoryModal } from "./EditCategoryModal";
 
 interface CategoriesTableProps {
   data: ICategory[];
@@ -25,7 +26,8 @@ export function CategoriesTable({
   const [isNewCategoryModalOpen, setIsNewCategoryModalOpen] = useState(false);
   const [isDeleteCategoryModalOpen, setIsDeleteCategoryModalOpen] =
     useState(false);
-  const [categoryBeingDeleted, setCategoryBeingDeleted] =
+  const [isEditCategoryModalOpen, setIsEditCategoryModalOpen] = useState(false);
+  const [categoryBeingHandled, setCategoryBeingHandled] =
     useState<ICategory | null>(null);
 
   const PencilIcon = pagesIcons.pencil;
@@ -40,13 +42,23 @@ export function CategoriesTable({
   }
 
   function openDeleteCategoryModal(category: ICategory) {
-    setCategoryBeingDeleted(category);
+    setCategoryBeingHandled(category);
     setIsDeleteCategoryModalOpen(true);
   }
 
   function closeDeleteCategoryModal() {
     setIsDeleteCategoryModalOpen(false);
-    setCategoryBeingDeleted(null);
+    setCategoryBeingHandled(null);
+  }
+
+  function openEditCategoryModal(category: ICategory) {
+    setCategoryBeingHandled(category);
+    setIsEditCategoryModalOpen(true);
+  }
+
+  function closeEditCategoryModal() {
+    setIsEditCategoryModalOpen(false);
+    setCategoryBeingHandled(null);
   }
 
   return (
@@ -58,12 +70,22 @@ export function CategoriesTable({
         />
       )}
       {isDeleteCategoryModalOpen &&
-        categoryBeingDeleted &&
+        categoryBeingHandled &&
         !isNewCategoryModalOpen && (
           <DeleteCategoryModal
             onClose={closeDeleteCategoryModal}
-            category={categoryBeingDeleted}
+            category={categoryBeingHandled}
             reloadCategories={reloadCategories}
+          />
+        )}
+      {isEditCategoryModalOpen &&
+        !isDeleteCategoryModalOpen &&
+        !isNewCategoryModalOpen &&
+        categoryBeingHandled && (
+          <EditCategoryModal
+            category={categoryBeingHandled}
+            handleClose={closeEditCategoryModal}
+            onRegistry={reloadCategories}
           />
         )}
       <Container>
@@ -92,7 +114,10 @@ export function CategoriesTable({
               <td>{category.icon}</td>
               <td>{capitalizeFirstLetter(category.name)}</td>
               <td>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => openEditCategoryModal(category)}
+                >
                   <PencilIcon />
                 </button>
                 <button
