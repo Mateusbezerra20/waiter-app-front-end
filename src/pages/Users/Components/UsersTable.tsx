@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Caption,
   Container,
@@ -6,10 +7,23 @@ import {
   TableHead,
 } from "../../../components/tableStyles";
 import { pagesIcons } from "../../../components/icons/pageIconsMaps";
+import { api } from "../../../utils/api";
+import { IUser } from "../../../entities/User";
 
 export function UsersTable() {
+  const [users, setUsers] = useState<IUser[]>([]);
   const Icon1 = pagesIcons.eye;
   const Icon2 = pagesIcons.trash;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await api.get("/users");
+
+      setUsers(result.data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Container>
@@ -26,45 +40,21 @@ export function UsersTable() {
         </tr>
       </TableHead>
       <TableBody>
-        <tr>
-          <td>Fulano de Tal</td>
-          <td>fulano@mail.com</td>
-          <td>Garçom</td>
-          <td>
-            <button type="button">
-              <Icon1 />
-            </button>
-            <button type="button">
-              <Icon2 />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Fulano de Tal</td>
-          <td>fulano@mail.com</td>
-          <td>Garçom</td>
-          <td>
-            <button type="button">
-              <Icon1 />
-            </button>
-            <button type="button">
-              <Icon2 />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Fulano de Tal</td>
-          <td>fulano@mail.com</td>
-          <td>Garçom</td>
-          <td>
-            <button type="button">
-              <Icon1 />
-            </button>
-            <button type="button">
-              <Icon2 />
-            </button>
-          </td>
-        </tr>
+        {users.map((user) => (
+          <tr key={user._id}>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.role}</td>
+            <td>
+              <button type="button">
+                <Icon1 />
+              </button>
+              <button type="button">
+                <Icon2 />
+              </button>
+            </td>
+          </tr>
+        ))}
       </TableBody>
     </Container>
   );
