@@ -11,6 +11,7 @@ export const Container = styled.button<{ variant: string }>`
   border-radius: 48px;
   color: #fff;
   padding: 12px 24px;
+  box-sizing: border-box;
 
   ${({ variant }) =>
     variant === "secondary"
