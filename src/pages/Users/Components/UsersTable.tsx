@@ -11,12 +11,15 @@ import { api } from "../../../utils/api";
 import { IUser } from "../../../entities/User";
 import { Button } from "../../../components/Button";
 import { NewUserModal } from "./NewUserModal";
+import { DeleteUserModal } from "./DeleteUserModal";
 
 export function UsersTable() {
   const [users, setUsers] = useState<IUser[]>([]);
   const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
-  const Icon1 = pagesIcons.pencil;
-  const Icon2 = pagesIcons.trash;
+  const [isDeleteUserModalOpen, setIsDeleteUserModalOpen] = useState(false);
+  const [userBeingDeleted, setUserBeingDeleted] = useState<IUser | null>(null);
+  const PencilIcon = pagesIcons.pencil;
+  const TrashIcon = pagesIcons.trash;
 
   const fetchUsers = useCallback(async () => {
     const result = await api.get("/users");
@@ -36,10 +39,27 @@ export function UsersTable() {
     setIsNewUserModalOpen(false);
   }
 
+  function openDeleteUserModal(user: IUser) {
+    setUserBeingDeleted(user);
+    setIsDeleteUserModalOpen(true);
+  }
+
+  function closeDeleteUserModal() {
+    setIsDeleteUserModalOpen(false);
+    setUserBeingDeleted(null);
+  }
+
   return (
     <>
       {isNewUserModalOpen && (
         <NewUserModal onClose={closeNewUserModal} onSuccess={fetchUsers} />
+      )}
+      {isDeleteUserModalOpen && userBeingDeleted && (
+        <DeleteUserModal
+          user={userBeingDeleted}
+          onClose={closeDeleteUserModal}
+          onSuccess={fetchUsers}
+        />
       )}
       <Container>
         <Caption>
@@ -68,10 +88,10 @@ export function UsersTable() {
               <td>{user.role}</td>
               <td>
                 <button type="button">
-                  <Icon1 />
+                  <PencilIcon />
                 </button>
-                <button type="button">
-                  <Icon2 />
+                <button type="button" onClick={() => openDeleteUserModal(user)}>
+                  <TrashIcon />
                 </button>
               </td>
             </tr>
