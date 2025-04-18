@@ -31,7 +31,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         })
         .then((response) => {
           const data = response.data;
-          setUser({ id: data.id, role: data.role });
+          setUser({ id: data._id, role: data.role });
         })
         .catch((error) => {
           console.error(error.message);
