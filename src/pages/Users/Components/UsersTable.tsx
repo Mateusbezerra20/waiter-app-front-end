@@ -12,12 +12,14 @@ import { IUser } from "../../../entities/User";
 import { Button } from "../../../components/Button";
 import { NewUserModal } from "./NewUserModal";
 import { DeleteUserModal } from "./DeleteUserModal";
+import { EditUserModal } from "./EditUserModal";
 
 export function UsersTable() {
   const [users, setUsers] = useState<IUser[]>([]);
   const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
   const [isDeleteUserModalOpen, setIsDeleteUserModalOpen] = useState(false);
-  const [userBeingDeleted, setUserBeingDeleted] = useState<IUser | null>(null);
+  const [isEditUserModalOpen, setIsEditUserModalOpen] = useState(false);
+  const [userBeingHandled, setUserBeingHandled] = useState<IUser | null>(null);
   const PencilIcon = pagesIcons.pencil;
   const TrashIcon = pagesIcons.trash;
 
@@ -40,13 +42,23 @@ export function UsersTable() {
   }
 
   function openDeleteUserModal(user: IUser) {
-    setUserBeingDeleted(user);
+    setUserBeingHandled(user);
     setIsDeleteUserModalOpen(true);
   }
 
   function closeDeleteUserModal() {
     setIsDeleteUserModalOpen(false);
-    setUserBeingDeleted(null);
+    setUserBeingHandled(null);
+  }
+
+  function openEditUserModal(user: IUser) {
+    setUserBeingHandled(user);
+    setIsEditUserModalOpen(true);
+  }
+
+  function closeEditUserModal() {
+    setIsEditUserModalOpen(false);
+    setUserBeingHandled(null);
   }
 
   return (
@@ -54,10 +66,17 @@ export function UsersTable() {
       {isNewUserModalOpen && (
         <NewUserModal onClose={closeNewUserModal} onSuccess={fetchUsers} />
       )}
-      {isDeleteUserModalOpen && userBeingDeleted && (
+      {isDeleteUserModalOpen && userBeingHandled && (
         <DeleteUserModal
-          user={userBeingDeleted}
+          user={userBeingHandled}
           onClose={closeDeleteUserModal}
+          onSuccess={fetchUsers}
+        />
+      )}
+      {isEditUserModalOpen && userBeingHandled && (
+        <EditUserModal
+          user={userBeingHandled}
+          onClose={closeEditUserModal}
           onSuccess={fetchUsers}
         />
       )}
@@ -87,7 +106,7 @@ export function UsersTable() {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button type="button">
+                <button type="button" onClick={() => openEditUserModal(user)}>
                   <PencilIcon />
                 </button>
                 <button type="button" onClick={() => openDeleteUserModal(user)}>
