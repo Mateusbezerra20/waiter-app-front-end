@@ -17,6 +17,7 @@ const passwordSchema = z
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { signin } = useContext(AuthContext);
   const { errors, addError, removeError, getErrorMessageByFieldName } =
@@ -26,6 +27,7 @@ export function Login() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await api.post("/login", { email, password });
@@ -34,6 +36,7 @@ export function Login() {
 
       signin(response.data);
     } catch (err) {
+      setIsLoading(false);
       if (err instanceof AxiosError) {
         if (err.response?.status === 401) {
           addError({
@@ -104,7 +107,11 @@ export function Login() {
             errorMessage={getErrorMessageByFieldName("password")}
           />
         </InputWrapper>
-        <Button label="Fazer login" disabled={!isFormValid} />
+        <Button
+          label="Fazer login"
+          disabled={!isFormValid}
+          isLoading={isLoading}
+        />
       </Form>
     </Container>
   );
