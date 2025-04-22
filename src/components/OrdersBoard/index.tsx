@@ -14,8 +14,6 @@ interface OrdersBoardProps {
   onChangeOrderStatus: (orderId: string, status: Order["status"]) => void;
 }
 
-// Paramos em 1:30
-
 export function OrdersBoard(props: OrdersBoardProps) {
   const { title, icon, orders, onCancelOrder, onChangeOrderStatus } = props;
 

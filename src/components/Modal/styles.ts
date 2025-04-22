@@ -17,16 +17,16 @@ export const Overlay = styled.div`
 export const ModalBody = styled.div`
   background: #fff;
   border-radius: 8px;
-  padding: 32px;
+  padding: 2rem;
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 
     strong {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
 
     button {

@@ -4,35 +4,35 @@ export const StatusContainer = styled.div`
   width: 416px;
 
   small {
-    font-size: 14px;
+    font-size: 0.8rem;
     opacity: 0.8;
   }
 
   div {
-    margin-top: 8px;
+    margin-top: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
 `;
 
 export const OrderDetails = styled.div`
-  margin-top: 32px;
+  margin-top: 2rem;
 
   > strong {
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 500;
     opacity: 0.8;
   }
 
   .order-items {
-    margin-top: 16px;
+    margin-top: 1rem;
 
     .item {
       display: flex;
 
       & + .item {
-        margin-top: 16px;
+        margin-top: 1rem;
       }
 
       img {
@@ -41,20 +41,20 @@ export const OrderDetails = styled.div`
     }
 
     .quantity {
-      font-size: 14px;
+      font-size: 0.8rem;
       color: #666;
       display: block;
-      min-width: 20px;
-      margin-left: 12px;
+      min-width: 0.25rem;
+      margin-left: 0.75rem;
     }
 
     .product-details {
-      margin-left: 4px;
+      margin-left: 0.25rem;
       strong {
         display: block;
       }
       span {
-        font-size: 14px;
+        font-size: 0.8rem;
         color: #666;
       }
     }
@@ -64,10 +64,10 @@ export const OrderDetails = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 24px;
+    margin-top: 0.5rem;
     span {
       font-weight: 500;
-      font-size: 14px;
+      font-size: 0.8rem;
       opacity: 0.8;
     }
   }
@@ -78,7 +78,7 @@ export const Actions = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 2rem;
 
   button:disabled {
     opacity: 0.5;
@@ -91,19 +91,19 @@ export const Actions = styled.footer`
     border: 0;
     border-radius: 48px;
     color: #fff;
-    padding: 12px 24px;
+    padding: 0.75 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   .secondary {
     width: 100%;
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem;
     color: #d73035;
     background: transparent;
     border: 0;
-    margin-top: 14px;
+    margin-top: 0.8rem;
   }
 `;

@@ -91,7 +91,7 @@ export const Content = styled.main`
 
   #ingredients-list {
     margin-top: 1.5rem;
-    height: 25rem;
+    height: 22rem;
     border-radius: 8px;
     overflow-y: scroll;
     display: flex;
