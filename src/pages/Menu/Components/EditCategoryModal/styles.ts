@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  width: 408px;
-  margin-top: 48px;
+  gap: 2rem;
+  width: 25rem;
+  margin-top: 3rem;
 
   button {
     align-self: flex-end;
     width: fit-content;
-    margin-top: 16px;
+    margin-top: 1rem;
   }
 `;
 
@@ -28,7 +28,7 @@ export const EmojiInput = styled.div`
   align-items: start;
 
   span {
-    font-size: 14px;
+    font-size: 0.8rem;
     line-height: 200%;
     font-weight: 500;
   }

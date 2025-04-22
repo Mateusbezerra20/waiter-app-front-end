@@ -4,8 +4,8 @@ button {
 
 .content {
   z-index: 99;
-  padding: 8px;
-  border-radius: 16px;
+  padding: 0.5rem;
+  border-radius: 1rem;
   background: white;
   border: 1px solid #ccc;
   display: grid;
@@ -20,7 +20,7 @@ button {
   padding: 2px;
   border-radius: 50%;
   transition: all 0.2s;
-  font-size: 18px;
+  font-size: 1.12rem;
 }
 
 .item:hover {

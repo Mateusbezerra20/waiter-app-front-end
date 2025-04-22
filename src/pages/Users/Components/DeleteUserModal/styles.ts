@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* 24px converted to rem assuming 16px base font size */
-  width: 26rem; /* 416px converted to rem assuming 16px base font size */
+  gap: 1.5rem;
+  width: 26rem;
   margin: 3rem 0 3rem;
 
   span {

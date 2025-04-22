@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 export const Container = styled.button<{ variant: string }>`
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 1.12rem;
   align-items: center;
   width: 100%;
   background: #d73035;
   border: 0;
-  border-radius: 48px;
+  border-radius: 3rem;
   color: #fff;
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   box-sizing: border-box;
 
   ${({ variant }) =>
@@ -19,7 +19,7 @@ export const Container = styled.button<{ variant: string }>`
           color: #d73035;
           background: transparent;
           width: fit-content;
-          padding: 12px 0px;
+          padding: 0.75rem 0px;
         `
       : ""}
 
@@ -29,7 +29,7 @@ export const Container = styled.button<{ variant: string }>`
   }
 
   span {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
   }
 `;

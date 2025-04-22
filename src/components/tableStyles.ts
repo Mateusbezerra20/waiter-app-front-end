@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.table`
   width: 100%;
-  max-width: 1216px;
   margin: 0px auto;
   border-collapse: separate;
   border-radius: 8px;
@@ -14,14 +13,14 @@ export const Caption = styled.caption`
   caption-side: top;
   text-align: left;
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 
   strong {
-    font-size: 18px;
+    font-size: 1.1rem;
     font-weight: 600;
     line-height: 120%;
 
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 
   button {
@@ -34,24 +33,24 @@ export const Caption = styled.caption`
 
 export const Quantity = styled.span`
   display: inline-block;
-  padding: 4px 8px;
+  padding: 0.25rem 0.5rem;
   background-color: #ccc;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 120%;
 `;
 
 export const TableHead = styled.thead`
   background-color: #ccc;
-  height: 48px;
+  height: 3rem;
   text-align: left;
   color: #333;
 
   tr {
-    border-top-left-radius: 8xp;
-    border-top-right-radius: 8xp;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     th:first-child {
       border-top-left-radius: 8px;
@@ -59,18 +58,18 @@ export const TableHead = styled.thead`
 
     th:last-child {
       border-top-right-radius: 8px;
-      width: 128px;
+      width: 8rem;
     }
 
     th {
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 `;
 
 export const TableBody = styled.tbody`
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 400;
   tr {
     td:last-child {
@@ -80,9 +79,9 @@ export const TableBody = styled.tbody`
       button {
         background: none;
         border: none;
-        width: 40px;
-        height: 40px;
-        padding: 8px;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0.5rem;
       }
 
       button:first-child {
@@ -95,7 +94,7 @@ export const TableBody = styled.tbody`
     }
 
     td {
-      padding: 16px;
+      padding: 1rem;
       border-bottom: 1px solid #ccc;
     }
   }

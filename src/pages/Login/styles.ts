@@ -8,19 +8,19 @@ export const Container = styled.div`
   width: 100%;
 
   header {
-    margin-top: 218px;
+    margin-top: 13.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     span {
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 500;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 2rem;
       font-weight: 100;
     }
   }
@@ -28,16 +28,16 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   width: 100%;
-  max-width: 384px;
-  margin-top: 40px;
+  max-width: 24rem;
+  margin-top: 2.5rem;
 
   button {
-    margin-top: 40px;
+    margin-top: 2.5rem;
   }
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
 `;

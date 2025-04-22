@@ -2,25 +2,25 @@ import styled from "styled-components";
 
 export const Content = styled.main`
   display: flex;
-  gap: 24px;
+  gap: 1.5rem;
 
   h5 {
-    font-size: 18px;
+    font-size: 1.12rem;
     font-weight: 600;
     line-height: 120%;
     color: #666666;
   }
 
   section {
-    width: 416px;
+    width: 24rem;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 0.8rem;
   }
 
   .image-input-container {
     h5 {
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
     }
 
     div {
@@ -29,22 +29,23 @@ export const Content = styled.main`
       overflow: hidden;
 
       img {
-        height: 160px;
+        height: 9rem;
         width: 100%;
+        object-fit: cover;
       }
 
       label {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 4px;
-        height: 52px;
+        gap: 0.25rem;
+        height: 3.25rem;
         background-color: #fff;
         color: #d73035;
         cursor: pointer;
 
         span {
-          font-size: 16px;
+          font-size: 1rem;
           font-weight: 600;
           line-height: 100%;
         }
@@ -59,18 +60,18 @@ export const Content = styled.main`
   #category-price-group {
     display: flex;
     justify-content: space-between;
-    gap: 14px;
+    gap: 0.8rem;
   }
 
   #categories-selection {
     label {
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
     }
 
     select {
-      padding: 14px;
-      border-radius: 75px;
+      padding: 0.8rem;
+      border-radius: 4.69rem;
       border: none;
       background: none;
       box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
@@ -89,17 +90,17 @@ export const Content = styled.main`
   }
 
   #ingredients-list {
-    margin-top: 24px;
-    height: 400px;
+    margin-top: 1.5rem;
+    height: 25rem;
     border-radius: 8px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
     color: #666666;
 
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 0.5rem;
     }
 
     ::-webkit-scrollbar-track {
@@ -116,7 +117,7 @@ export const Content = styled.main`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px;
+      padding: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
 
@@ -136,7 +137,7 @@ export const Content = styled.main`
 export const Footer = styled.footer`
   display: flex;
   justify-content: end;
-  margin-top: 48px;
+  margin-top: 3rem;
 
   button {
     width: fit-content;
