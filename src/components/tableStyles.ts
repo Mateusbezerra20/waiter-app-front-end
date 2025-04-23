@@ -72,6 +72,7 @@ export const TableBody = styled.tbody`
   font-size: 0.8rem;
   font-weight: 400;
   tr {
+    background: white;
     td:last-child {
       display: flex;
       justify-content: space-between;
