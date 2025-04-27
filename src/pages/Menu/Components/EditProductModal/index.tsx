@@ -228,22 +228,26 @@ export function EditProductModal({
             />
 
             <div id="categories-selection">
-              <label htmlFor="category-select">Categoria</label>
-              <select
-                name="categories"
-                id="category-select"
-                onChange={(event) => setSelectedCategory(event.target.value)}
-              >
-                {categories.map((category) => (
-                  <option
-                    key={category._id}
-                    value={category._id}
-                    selected={category._id === product.category}
-                  >
-                    {`${category.icon} ${category.name}`}
-                  </option>
-                ))}
-              </select>
+              <label htmlFor="category-select">
+                <span>Categoria</span>
+                <select
+                  name="categories"
+                  id="category-select"
+                  onChange={(event) => setSelectedCategory(event.target.value)}
+                >
+                  <option value="">Selecione a categoria</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category._id}
+                      value={category._id}
+                      selected={category._id === product.category}
+                    >
+                      {`${category.icon} ${category.name}`}
+                    </option>
+                  ))}
+                </select>
+                <div className="arrow"></div>
+              </label>
             </div>
           </div>
         </section>

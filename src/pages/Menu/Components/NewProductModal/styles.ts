@@ -65,17 +65,40 @@ export const Content = styled.main`
 
   #categories-selection {
     label {
+      position: relative;
       display: block;
-      margin-bottom: 1rem;
-    }
 
-    select {
-      padding: 0.8rem;
-      border-radius: 4.69rem;
-      border: none;
-      background: none;
-      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-      outline: none;
+      font-size: 0.8rem;
+      line-height: 200%;
+      font-weight: 500;
+
+      div.arrow {
+        position: absolute;
+        right: 1rem;
+        top: 2.8rem;
+        pointer-events: none;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-left: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        transform: rotate(-45deg);
+      }
+
+      select {
+        padding: 1rem 0.8rem;
+        width: 100%;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border-radius: 8px;
+        border: solid 1px #ccc;
+        background: none;
+        outline: none;
+        appearance: none;
+        box-sizing: border-box;
+
+        -moz-appearance: none;
+        -moz-appearance: none;
+      }
     }
   }
 
