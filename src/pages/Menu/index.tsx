@@ -63,7 +63,7 @@ export function Menu() {
     const formData = new FormData();
     formData.append("name", product.name);
     formData.append("description", product.description);
-    formData.append("price", product.price);
+    formData.append("price", String(product.price));
     formData.append("category", product.category);
     formData.append("ingredients", JSON.stringify(product.ingredients));
     formData.append("image", product.image);

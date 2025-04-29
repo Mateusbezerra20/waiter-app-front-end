@@ -8,6 +8,7 @@ import { useErrors } from "../../../../hooks/useErrors";
 import { Input } from "../../../../components/Input";
 import { Modal } from "../../../../components/Modal";
 import { Button } from "../../../../components/Button";
+import { InputCurrency } from "../../../../components/InputCurrency";
 
 import { ImageIcon } from "../../../../components/icons/ImageIcon";
 import { CheckIcon } from "../../../../components/icons/CheckIcon";
@@ -17,6 +18,7 @@ import { IPostProduct } from "../../../../entities/PostProduct";
 import noImage from "../../../../assets/images/no-image.png";
 import { ingredientes } from "../../../../assets/ingredients";
 import { ICategory } from "../../../../entities/Category";
+import { currencyStringToNumber } from "../../../../utils/currencyStringToNumber";
 
 interface NewProductModalProps {
   categories: ICategory[];
@@ -34,7 +36,7 @@ const descriptionSchema = z
   .string()
   .min(1, { message: "Adicione uma descrição ao produto" });
 
-const priceSchema = z.coerce.number();
+const priceSchema = z.string().min(1);
 
 export function NewProductModal({
   categories,
@@ -82,7 +84,7 @@ export function NewProductModal({
         category: selectedCategory,
         ingredients: selectedIngredients,
         image: imageFile!,
-        price: productPrice,
+        price: currencyStringToNumber(productPrice),
       });
     } catch {
       toast.error("Falha ao cadastrar o novo produto");
@@ -139,9 +141,7 @@ export function NewProductModal({
     }
   }
 
-  function handleChangePrice(event: ChangeEvent<HTMLInputElement>) {
-    const fieldValue = event.target.value;
-
+  function handleChangePrice(fieldValue: string) {
     setProductPrice(fieldValue);
     const parsedValue = priceSchema.safeParse(fieldValue);
 
@@ -198,14 +198,9 @@ export function NewProductModal({
           />
 
           <div id="category-price-group">
-            <Input
-              name="price"
-              label="Preço"
-              type="number"
-              min={0}
-              value={productPrice}
+            <InputCurrency
+              value={Number(productPrice)}
               onChange={handleChangePrice}
-              errorMessage={getErrorMessageByFieldName("price")}
             />
 
             <div id="categories-selection">

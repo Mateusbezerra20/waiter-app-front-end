@@ -16,6 +16,8 @@ import { ingredientes } from "../../../../assets/ingredients";
 import { ICategory } from "../../../../entities/Category";
 import { IProduct } from "../../../../entities/Product";
 import { api } from "../../../../utils/api";
+import { InputCurrency } from "../../../../components/InputCurrency";
+import { currencyStringToNumber } from "../../../../utils/currencyStringToNumber";
 
 interface EditProductModalProps {
   categories: ICategory[];
@@ -34,7 +36,7 @@ const descriptionSchema = z
   .string()
   .min(1, { message: "Adicione uma descrição ao produto" });
 
-const priceSchema = z.coerce.number();
+const priceSchema = z.string().min(1);
 
 export function EditProductModal({
   categories,
@@ -84,7 +86,7 @@ export function EditProductModal({
       const formData = new FormData();
       formData.append("name", productName);
       formData.append("description", productDescription);
-      formData.append("price", productPrice);
+      formData.append("price", String(currencyStringToNumber(productPrice)));
       formData.append("ingredients", JSON.stringify(selectedIngredients));
       selectedCategory && formData.append("category", selectedCategory);
       imageFile && formData.append("image", imageFile);
@@ -152,9 +154,7 @@ export function EditProductModal({
     }
   }
 
-  function handleChangePrice(event: ChangeEvent<HTMLInputElement>) {
-    const fieldValue = event.target.value;
-
+  function handleChangePrice(fieldValue: string) {
     setProductPrice(fieldValue);
     const parsedValue = priceSchema.safeParse(fieldValue);
 
@@ -217,14 +217,9 @@ export function EditProductModal({
           />
 
           <div id="category-price-group">
-            <Input
-              name="price"
-              label="Preço"
-              type="number"
-              min={0}
-              value={productPrice}
+            <InputCurrency
+              value={Number(productPrice)}
               onChange={handleChangePrice}
-              errorMessage={getErrorMessageByFieldName("price")}
             />
 
             <div id="categories-selection">
